@@ -1,5 +1,5 @@
 //
-//  WindowAccessibleButton.swift
+//  WindowActionButton.swift
 //  SwiftUITnker
 //
 //  Created by Paul Bates on 10/12/20.
@@ -10,7 +10,7 @@ import SwiftUI
 
 /// A button that is able to expose its host window when interacting the the button
 @available(iOS 13.0, macOS 10.15, tvOS 13.0, *)
-public struct WindowAccessibleButton<Label> : View where Label : View {
+public struct WindowActionButton<Label> : View where Label : View {
     /// Host window based on presentation of view
     @State private var hostWindow: Window? = nil
 
@@ -55,7 +55,7 @@ public struct WindowAccessibleButton<Label> : View where Label : View {
 }
 
 @available(iOS 13.0, macOS 10.15, tvOS 13.0, *)
-public extension WindowAccessibleButton where Label == Text {
+public extension WindowActionButton where Label == Text {
     /// Creates a button that generates its label from a localized string key.
     ///
     /// This initializer creates a ``Text`` view on your behalf, and treats the
@@ -102,11 +102,11 @@ struct BlueButtonStyle: ButtonStyle {
     }
 }
 
-struct WindowAccessibleButton_Previews: PreviewProvider {
+struct WindowActionButton_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             VStack {
-                WindowAccessibleButton(action: { window in
+                WindowActionButton(action: { window in
                     let title = "Hello"
                     let message = "Hello Mum"
                     let buttonTitle = "Bye!"
@@ -126,9 +126,6 @@ struct WindowAccessibleButton_Previews: PreviewProvider {
 
                     // Use NSAlert instead of Alert
                     let alert = NSAlert()
-                    if #available(OSX 11.0, *) {
-                        alert.icon = NSImage(systemSymbolName: "hand.raised.filled", accessibilityDescription: nil)
-                    }
                     alert.messageText = title
                     alert.informativeText = message
                     alert.addButton(withTitle: buttonTitle)

@@ -1,5 +1,5 @@
 //
-//  WindowAccessibleButton.swift
+//  WindowActionButton.swift
 //  SwiftUITnker
 //
 //  Created by Paul Bates on 10/12/20.
@@ -13,7 +13,7 @@ import UIKit
 public typealias Window = UIWindow
 
 /// A host window bindable view controller to determine the host window on display
-@available(iOS 13.0, *)
+@available(iOS 13.0, tvOS 13.0, *)
 final private class WindowBindableViewController: UIViewController {
     /// Binding for view's host window
     @Binding var hostWindow: Window?
@@ -43,6 +43,7 @@ final private class WindowBindableViewController: UIViewController {
         view.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         view.setContentHuggingPriority(.defaultHigh, for: .vertical)
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.autoresizingMask = [.flexibleBottomMargin, .flexibleTopMargin, .flexibleLeftMargin, .flexibleRightMargin]
 
         // No interaction support
         view.isAccessibilityElement = false
