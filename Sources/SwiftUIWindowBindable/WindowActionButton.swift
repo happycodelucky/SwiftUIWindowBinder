@@ -112,7 +112,7 @@ struct WindowActionButton_Previews: PreviewProvider {
                     let buttonTitle = "Bye!"
                     
                     // In this example it know ``Alert`` can be used from SwiftUI
-                    // Intead this demonstrates the accessibity of the window tersely
+                    // Instead this demonstrates the accessibity of the window tersely
 
                     #if canImport(UIKit)
 
