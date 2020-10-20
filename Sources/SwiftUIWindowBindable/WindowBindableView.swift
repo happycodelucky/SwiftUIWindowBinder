@@ -51,7 +51,9 @@ final private class WindowBindableViewController: UIViewController {
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        hostWindow = view.window
+        if (hostWindow != view.window) {
+            hostWindow = view.window
+        }
 
         super.viewDidAppear(animated)
     }
@@ -59,14 +61,20 @@ final private class WindowBindableViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        hostWindow = nil
+         hostWindow = nil
     }
 }
 
 /// A SwiftUI view that is able to expose a hosted window
 @available(iOS 13.0, *)
 public struct WindowBindableView: UIViewControllerRepresentable {
-    @Binding public var hostWindow: Window?
+    public typealias Window = UIWindow
+
+    @Binding public var hostWindow: Self.Window?
+
+    public init(hostWindow: Binding<Self.Window?>) {
+        _hostWindow = hostWindow
+    }
 
     // MARK: UIViewControllerRepresentable
 
@@ -119,7 +127,9 @@ final private class WindowBindableViewController: NSViewController {
     }
 
     override func viewDidAppear() {
-        hostWindow = view.window
+        if (hostWindow != view.window) {
+            hostWindow = view.window
+        }
 
         super.viewDidAppear()
     }
@@ -135,6 +145,10 @@ final private class WindowBindableViewController: NSViewController {
 @available(macOS 10.15, *)
 public struct WindowBindableView: NSViewControllerRepresentable {
     @Binding public var hostWindow: Window?
+
+    public init(hostWindow: Binding<Window?>) {
+        _hostWindow = hostWindow
+    }
 
     // MARK: UIViewControllerRepresentable
 

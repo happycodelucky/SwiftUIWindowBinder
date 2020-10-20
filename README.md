@@ -10,16 +10,31 @@
 ![Release](https://img.shields.io/github/v/release/happycodelucky/SwiftUIWindowBindableView.svg?include_prereleases&style=for-the-badge)
 
 # Overview
-**SwiftUIWindowBindableView** is a package for SwiftUI to permit access to a host Window object with zero set up. As such the views in **SwiftUIWindowBindableView** works with newer SwiftUI apps where there is no place to capture a window, as well as multi-window apps.
+**SwiftUIWindowBindableView** supports SwiftUI in getting access to a host Window object with zero set up. SwiftUI apps with no application delegate or scene delegate can still access the Window, and the window is scoped to each document in a multi-window application.
 
-[`WindowActionButton`](Sources/SwiftUIWindowBindableView/WindowAction.swift) is one handy `Button`-like View anyone coming here is likely to use. 
+## WindowActionButton
+
+A typically usage of importing **SwiftUIWindowBindableView** is to access [`WindowActionButton`](Sources/SwiftUIWindowBindableView/WindowAction.swift). `WindowActionButton` wraps the internal binding and provides a Window (platform dependent) object.
+
+`WindowActionButton` looks and behaves like SwiftUI's [Button](https://developer.apple.com/documentation/swiftui/button). It can be initialized in the same way, and have styles applied to it in the same way. 
+
+```swift
+// Create a window action button, where a Window object will be provided to the the `action:` closure
+WindowActionButton { window in
+    // Do something with `window`...
+} label: {
+    // Provide the label view for the button
+    Text("Hello")
+}
+```
+
+See more in the [Examples](#Examples) below, or the [WindowActionButton Playground](Playgrounds/WindowActionButton.playground/Contents.swift)
 
 ## Where it Doesn't Work
-If you need access to a window object as an Environment this is not going to work for you. Really, you shouldn't need access to the window object during the construction of a SwiftUI view, but only when the view is acted upon (like a Button's `action:` closure). 
 
-SwiftUI itself provides SwiftUI classes to wrap existing functionality in this way, such as `Alert` in place of using `UIAlertViewController` or `NSAlert`.
+If you need access to a window object as an Environment or State object (see this [Stack Overflow thread](https://stackoverflow.com/questions/60359808/how-to-access-own-window-within-swiftui-view)), this is not going to work for you.
 
-That said, use of [`WindowBindableView`](Sources/SwiftUIWindowBindableView/WindowBindableView.swift) does support binding to a View's State property.
+ Really, you shouldn't need access to the window object during the initialization of a SwiftUI view, but only when the view is acted upon (like a Button's `action:` closure). SwiftUI itself provides SwiftUI classes to wrap existing functionality in this way, such as `Alert` in place of using `UIAlertViewController` or `NSAlert`.
 
 # Installation
 To use **SwiftUIWindowBindableView** within your project see how to reference package using the [Swift Package Manager](https://swift.org/package-manager/) or in [Xcode](https://developer.apple.com/videos/play/wwdc2019/408/), using this repository's GitHub link. Once installed you can import **SwiftUIWindowBindableView** as appropriate.
@@ -44,11 +59,17 @@ targets: [
 ]
 ```
 
+## Playgrounds
+
+To run the [SwiftUIWindowBindableView Playground](Playgrounds) examples you will need to open the package in Xcode and run any of the playgrounds under `Playgrounds`. 
+
+Be sure to have the options "Render Documentation" and "Build Active Schema" enabled (they are by default) for the best representation, as the Playgrounds serve as working documentation.
+
 # Examples
 
-More coming soon...
+## Using WindowActionButton
 
-`WindowActionButton` looks and behaves like SwiftUI's [Button](https://developer.apple.com/documentation/swiftui/button). It can be initialized in the same way, and have styles applied to it in the same way. 
+[`WindowActionButton`](Sources/SwiftUIWindowBindableView/WindowAction.swift) looks and behaves like SwiftUI's [Button](https://developer.apple.com/documentation/swiftui/button). It can be initialized in the same way, and have styles applied to it in the same way. 
 
 Below is a simple example of setting up a `WindowActionButton`
 
@@ -91,8 +112,3 @@ WindowActionButton { window in
 ```
 
 It's that simple.
-
-## Playgrounds
-To run the [SwiftUIWindowBindableView Playground](Playgrounds) examples you will need to open the package in Xcode and run any of the playgrounds under `Playgrounds`. 
-
-Be sure to have the options "Render Documentation" and "Build Active Schema" enabled (they are by default) for the best representation, as the Playgrounds serve as working documentation.
