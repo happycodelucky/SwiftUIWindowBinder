@@ -1,6 +1,6 @@
 import SwiftUI
 import PlaygroundSupport
-import SwiftUIWindowBindable
+import SwiftUIWindowBinder
 
 struct ContentView : View {
     @State var window: Window?
