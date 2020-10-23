@@ -1,6 +1,6 @@
 //
-//  WindowActionButton.swift
-//  SwiftUITnker
+//  WindowButton.swift
+//  SwiftUIWindowBinder
 //
 //  Created by Paul Bates on 10/12/20.
 //
@@ -10,9 +10,9 @@ import SwiftUI
 
 /// A button that is able to expose its host window when interacting the the button
 @available(iOS 13.0, macOS 10.15, tvOS 13.0, *)
-public struct WindowActionButton<Label> : View where Label : View {
+public struct WindowButton<Label> : View where Label : View {
     /// Host window based on presentation of view
-    @State private var hostWindow: Window? = nil
+    @State private var window: Window? = nil
 
     /// Action handler with supplied window
     private let action: (Window) -> Void
@@ -34,28 +34,24 @@ public struct WindowActionButton<Label> : View where Label : View {
 
     public var body: some View {
         Button(action: {
-            guard let window = hostWindow else {
+            guard let window = self.window else {
                 os_log(.error, "Button action cancelled: window is nil")
                 return
             }
 
             action(window)
         }, label: {
-            ZStack(alignment: .center, content: {
-                // Add bindindable view to hierachy to tap UIKit/AppKit view hierarchy
-                WindowBindableView(hostWindow: $hostWindow)
-                    .frame(minWidth: 0, idealWidth: 0, maxWidth: 0, minHeight: 0,
-                           idealHeight: 0, maxHeight: 0, alignment: .center)
-                
+            // Add bindindable view to hierachy to tap UIKit/AppKit view hierarchy
+            WindowBinder(window: $window) {
                 // Original label
                 label()
-            })
+            }
         })
     }
 }
 
 @available(iOS 13.0, macOS 10.15, tvOS 13.0, *)
-public extension WindowActionButton where Label == Text {
+public extension WindowButton where Label == Text {
     /// Creates a button that generates its label from a localized string key.
     ///
     /// This initializer creates a ``Text`` view on your behalf, and treats the
@@ -102,41 +98,41 @@ struct BlueButtonStyle: ButtonStyle {
     }
 }
 
-struct WindowActionButton_Previews: PreviewProvider {
+struct WindowButton_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            VStack {
-                WindowActionButton(action: { window in
-                    let title = "Hello"
-                    let message = "Hello Mum"
-                    let buttonTitle = "Bye!"
-                    
-                    // In this example it know ``Alert`` can be used from SwiftUI
-                    // Instead this demonstrates the accessibity of the window tersely
+            WindowButton(action: { window in
+                let title = "Hello"
+                let message = "Hello Mum"
+                let buttonTitle = "Bye!"
 
-                    #if canImport(UIKit)
+                // In this example it know ``Alert`` can be used from SwiftUI
+                // Instead this demonstrates the accessibity of the window tersely
 
-                    // Use UIAlertController instead of Alert
-                    let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
-                    controller.addAction(UIAlertAction(title: buttonTitle, style: .cancel))
+                #if canImport(UIKit)
 
-                    window.rootViewController!.present(controller, animated: true) { }
+                // Use UIAlertController instead of Alert
+                let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                controller.addAction(UIAlertAction(title: buttonTitle, style: .cancel))
 
-                    #elseif canImport(AppKit)
+                window.rootViewController!.present(controller, animated: true) { }
 
-                    // Use NSAlert instead of Alert
-                    let alert = NSAlert()
-                    alert.messageText = title
-                    alert.informativeText = message
-                    alert.addButton(withTitle: buttonTitle)
+                #elseif canImport(AppKit)
 
-                    alert.beginSheetModal(for: window)
+                // Use NSAlert instead of Alert
+                let alert = NSAlert()
+                alert.messageText = title
+                alert.informativeText = message
+                alert.addButton(withTitle: buttonTitle)
 
-                    #endif
-                }, label: {
-                    Text("Hello")
-                }).buttonStyle(BlueButtonStyle())
-            }.padding()
+                alert.beginSheetModal(for: window)
+
+                #endif
+            }, label: {
+                Text("Hello")
+            })
+            .buttonStyle(BlueButtonStyle())
+            .padding()
         }
     }
 }

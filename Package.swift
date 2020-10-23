@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "SwiftUIWindowBindable",
+    name: "SwiftUIWindowBinder",
     
     platforms: [
         .iOS(.v13),
@@ -14,15 +14,15 @@ let package = Package(
     
     products: [
         .library(
-            name: "SwiftUIWindowBindable",
-            targets: ["SwiftUIWindowBindable"]),
+            name: "SwiftUIWindowBinder",
+            targets: ["SwiftUIWindowBinder"]),
     ],
     
     dependencies: [ ],
     
     targets: [
         .target(
-            name: "SwiftUIWindowBindable",
+            name: "SwiftUIWindowBinder",
             dependencies: [])
     ]
 )

@@ -1,10 +1,10 @@
 /*:
- # WindowActionButton Playground
+ # WindowButton Playground
  
- > Be sure to have the `SwiftUIWindowBindable` schema selected.
+ > Be sure to have the `SwiftUIWindowBinder` schema selected.
  > You may choose between the various platform in the Playground Inspector to demonstrate usage across each
  
- `WindowActionButton` is based on `WindowBindableView`. This ensures the window is aways accessible
+ `WindowButton` is based on `WindowBinder`. This ensures the window is aways accessible
  when the view is presented, by determine the window at runtime when the view is added to a view hierachy.
  
  A benefit of this approach is no set up, so no passing of a platform window object during app launch or
@@ -13,10 +13,10 @@
  */
 import SwiftUI
 import PlaygroundSupport
-import SwiftUIWindowBindable
+import SwiftUIWindowBinder
 /*:
  ## Content view
- The `ContentView` hosts a `WindowActionButton`, where the window is capture in the `action:` closure for use
+ The `ContentView` hosts a `WindowButton`, where the window is capture in the `action:` closure for use
  */
 struct ContentView: View {
     var body: some View {
@@ -28,7 +28,7 @@ struct ContentView: View {
  where the window may be used to interop with UIKit or AppKit where a window or a
  view controller is needed.
  */
-            WindowActionButton { window in
+            WindowButton { window in
                 // Determine the screen name, or description if not name is available
                 var screenName: String
                 #if canImport(AppKit)
@@ -48,7 +48,7 @@ struct ContentView: View {
 /*:
  ## Button Styling
  For cross-platform consistency with SwiftUI, create a simple `ButtonStyle` to use with
- the `WindowActionButton` in the `ContentView` above
+ the `WindowButton` in the `ContentView` above
  */
 struct BlueButtonStyle: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {

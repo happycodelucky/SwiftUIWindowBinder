@@ -1,6 +1,6 @@
 //
-//  WindowActionButton.swift
-//  SwiftUITnker
+//  WindowBindableView.swift
+//  SwiftUIWindowBinder
 //
 //  Created by Paul Bates on 10/12/20.
 //
@@ -66,9 +66,9 @@ final private class WindowBindableViewController: UIViewController {
 }
 
 /// A SwiftUI view that is able to expose a hosted window
-@available(iOS 13.0, *)
-public struct WindowBindableView: UIViewControllerRepresentable {
-    public typealias Window = UIWindow
+@available(iOS 13.0, tvOS 13.0, *)
+struct WindowBindableView: UIViewControllerRepresentable {
+    typealias Window = UIWindow
 
     @Binding public var hostWindow: Self.Window?
 
@@ -143,19 +143,19 @@ final private class WindowBindableViewController: NSViewController {
 
 /// A SwiftUI view that is able to expose a hosted window
 @available(macOS 10.15, *)
-public struct WindowBindableView: NSViewControllerRepresentable {
+struct WindowBindableView: NSViewControllerRepresentable {
     @Binding public var hostWindow: Window?
 
-    public init(hostWindow: Binding<Window?>) {
+    init(hostWindow: Binding<Window?>) {
         _hostWindow = hostWindow
     }
 
     // MARK: UIViewControllerRepresentable
 
-    public func makeNSViewController(context: Context) -> NSViewController {
+    func makeNSViewController(context: Context) -> NSViewController {
         WindowBindableViewController(window: $hostWindow)
     }
 
-    public func updateNSViewController(_ uiViewController: NSViewController, context: Context) { }
+    func updateNSViewController(_ uiViewController: NSViewController, context: Context) { }
 }
 #endif
