@@ -1,4 +1,5 @@
 /*:
+ [Previous Page](@previous)
  # Using WindowButton
 
  Buttons are probably where window related actions may be used most. For convience `WindowButton`
@@ -106,12 +107,3 @@ struct ContentView: View {
 // Present the view controller in the Live View window
 import PlaygroundSupport
 PlaygroundPage.current.setLiveView(ContentView())
-
-
-
-
-
-//: [Previous](@previous)
-
-
-//: [Next](@next)

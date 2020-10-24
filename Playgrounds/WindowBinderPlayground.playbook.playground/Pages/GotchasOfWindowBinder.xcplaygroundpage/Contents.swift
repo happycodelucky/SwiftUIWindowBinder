@@ -1,4 +1,5 @@
 /*:
+ [Previous Page](@previous)
  # WindowBinder - What Not to Do!
 
  Attempting to access the `@State var window` property from within the *construction* of a view, that is not inside

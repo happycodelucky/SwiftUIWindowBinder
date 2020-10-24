@@ -1,4 +1,5 @@
 /*:
+ [Previous Page](@previous)
  # Wrapping Up
 
  The two major take aways from the `SwiftUIWindowBinder` package is `WindowButton` and `WindowBinder`. They both operate alike
@@ -9,9 +10,9 @@
  stopped myself, and removed them. `WindowButton` was all the convenience I wanted to expose and I even thought if I should do
  that.
 
- There was a few objections:
- 1. Lots of boilerplate code, and maintence here
- 2. Overloading futureproofing (if Apple decides to overload `onTapGesture`'s `action:` to receive something else
+ I had a few objections to including them:
+ 1. Lots of boilerplate code, and maintence here when SwiftUI changes
+ 2. Overloading futureproofing (if Apple decides to overload `onTapGesture`'s `action:` to receive something else)
  3. Most important - providing a `Window` to buttons or event oriented view modifiers isn't actual "The Right Way" (see next section)
 
  But, if you really must, here's the code for overloading the `onTapGesture` (now optionally receives a `Window`).
@@ -49,15 +50,17 @@
  }
 /*:
  ## The Right Way
- `WindowButton` is a convenience, it gets you where you need to get to. Eventually you code will replace `WindowButton` `with
+ `WindowButton` is a convenience, it gets you where you need to get to. Eventually you code will replace `WindowButton` with
  `Button` as SwiftUI matures and new native SwiftUI functions become available.
 
  What I mean by "The Right Way" is you code should be using a wrapper, if possible, not accessing a `UIWindow`/`NSWindow`
- directly. For me personally, and why this package was created, `ASWebAuthenticationSession` would have a wrapper much like
- `Alert` is for SwiftUI. The right way, is instead to create a SwiftUI wrapper for `ASWebAuthenticationSession` using
- `WindowBinder` and not use it directly.
-
- ## Enjoy!
+ directly. For me personally, and why this package was created, something like `ASWebAuthenticationSession` should have a
+ wrapper much like `Alert` is for `UIAlertViewController`/`NSAlert` in SwiftUI. The right way is instead to create a
+ SwiftUI wrapper for `ASWebAuthenticationSession` using `WindowBinder`, and not use `ASWebAuthenticationSession` directly
+ in a Button's `action:` closure (or a view modifier).
+ */
+/*:
+ # Enjoy!
  SwiftUI is evolving, getting a ton of new features each release. This package represents a bit of a polyfill assistance
  (hello JavaScript + Bable nomenclature) until the time when we have official wrappers for the things we want.
 

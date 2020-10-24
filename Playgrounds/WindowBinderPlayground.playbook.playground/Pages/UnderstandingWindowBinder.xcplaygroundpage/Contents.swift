@@ -1,4 +1,5 @@
 /*:
+ [Previous Page](@previous)
  # Understanding WindowBinder
 
  `WindowBinder` is at the core of capturing a `Window` in your SwiftUI `View`. As it name implies it uses a
