@@ -1,27 +1,28 @@
 /*:
  # Using WindowButton
 
- Buttons are probably where window related actions may be used most. For convience `WindowButton` wraps the logic of
- `WindowBinder` and allow the `action:` closure to receive a `Window` when interacted with.
+ Buttons are probably where window related actions may be used most. For convience `WindowButton`
+ wraps the logic of `WindowBinder` and provides the `action:` closure to with a platform depedendent
+ `Window` when interacted with.
  */
 import SwiftUI
 import SwiftUIWindowBinder
 /*:
- ## Function Requiring a UIWindow or NSWindow
+ ## Supplimentary Code
 
- In a hyperthetical example, lets assume `Alert` doesn't exist in SwiftUI. Presenting an alert in UIKit or AppKit
- requires a `UIViewController` or `NSWindow` respectively. This function does the job of using a `Window` to
- present the alert.
+ ### A Function Requiring a UIWindow or NSWindow
 
- > `Window` is a platform abstraction of `UIWindow` or `NSWindow`
+ In a hyperthetical scenario, lets assume `Alert` doesn't exist in SwiftUI. Presenting an alert in
+ UIKit or AppKit requires a `UIViewController` or `NSWindow`. This function implements the use of
+ `UIAlertController`/`NSAlert` to demonstrate the use of Window later.
+
+ The implementation is not important here, just that a function exists requiring a `UIWindow` or
+ `NSWindow` (remember `Window` is a platform abstraction to represent both).
  */
-func presentWindowAlert(onWindow window: Window) {
+func presentWindowAlert(withWindow window: Window) {
     let title = "Hello"
     let message = "Hello Mum"
     let buttonTitle = "Bye!"
-
-    // In this example it know ``Alert`` can be used from SwiftUI
-    // Instead this demonstrates the accessibity of the window tersely
 
 #if canImport(UIKit)
 
@@ -46,53 +47,62 @@ func presentWindowAlert(onWindow window: Window) {
 }
 /*:
  ## Content view
- The `ContentView` hosts a `WindowButton`, where the window is capture in the `action:` closure for use
+ In the content view we'll be using `WindowButton` instead of SwiftUI's `Button`. The are almost
+ identical in usage. The diffence being is `WindowButton`'s `action:` closure will receive a `Window`
+ argument.
+
+ Using `WindowButton` instead of `WindowBinder` cleans up the content view as there is no explict
+ state variable and binding.
  */
 struct ContentView: View {
     var body: some View {
         VStack(alignment: .center, spacing: nil, content: {
+            // Some helpful text
             Text("Tap the button below")
                 .font(.headline)
                 .padding()
+
 /*:
- ### Window Action Handling
- Add an action handler to the `WindowButton`. The closure will be receive a platform dependent
- `Window` object (UIWindow or NSWindow) to work with. It's here where the window may be used
- to interop with UIKit or AppKit where a window or a view controller is needed.
+ Initialize a `WindowButton` that calls our `presentWindowAlert(withWindow:)` function.
+
+ > If for some reason there is not `Window` (it's `nil`) the `action` clouser will not be called.
+
+ `WindowButton` is much like `Button`, it can even be styled in exactly the same way.
  */
+            // Our button that receives a `Window` when interacted with
             WindowButton { window in
-                // Call a function needing a Window
-                presentWindowAlert(onWindow: window)
+                // Make a call with the passed `window: Window`
+                presentWindowAlert(withWindow: window)
             } label: {
                 Text("Hello Button")
             }
+            // Use our custom style defined below (this just makes things look a little nicer)
             .buttonStyle(BlueButtonStyle())
+/*:
+ Go ahead, **run** the playground now on iOS or macOS. Tap the button to see the platform alert.
+ */
         }).padding()
     }
-}
-/*:
- ## Button Styling
- For cross-platform consistency with SwiftUI, create a simple `ButtonStyle` to use with
- the `WindowButton` in the `ContentView` above
- */
-struct BlueButtonStyle: ButtonStyle {
-    func makeBody(configuration: Self.Configuration) -> some View {
-        configuration.label
-            .padding(12)
-            .foregroundColor(Color.white)
-            .background(
-                RoundedRectangle(cornerRadius: 10, style: .continuous).fill(
-                    configuration.isPressed ? Color.blue.opacity(0.8) : Color.blue))
+
+    /// For cross-platform consistency with SwiftUI, create a simple `ButtonStyle` to use with
+    /// the `WindowButton` in the `ContentView` above
+    private struct BlueButtonStyle: ButtonStyle {
+        func makeBody(configuration: Self.Configuration) -> some View {
+            configuration.label
+                .padding(12)
+                .foregroundColor(Color.white)
+                .background(
+                    RoundedRectangle(cornerRadius: 10, style: .continuous).fill(
+                        configuration.isPressed ? Color.blue.opacity(0.8) : Color.blue))
+        }
     }
 }
+
 /*:
- Go ahead, **run** the playground now. Tap the label to see the window description printed to the console.
+ Next, [Using `WindowButton`](@next)
  */
 /*:
- To get started, head to [Understanding WindowBinder](@next)
  */
-
-
 // Present the view controller in the Live View window
 import PlaygroundSupport
 PlaygroundPage.current.setLiveView(ContentView())
