@@ -1,5 +1,5 @@
 /*:
- [Previous Page](@previous)
+ [Welcome](Welcome) | [Previous Page](@previous)
  # Wrapping Up
 
  The two major take aways from the `SwiftUIWindowBinder` package is `WindowButton` and `WindowBinder`. They both operate alike

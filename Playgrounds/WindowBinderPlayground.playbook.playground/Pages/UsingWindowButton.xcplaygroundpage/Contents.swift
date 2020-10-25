@@ -101,7 +101,7 @@ struct ContentView: View {
 }
 
 /*:
- Next, [What Not to Do With View using WindowBinder](@next)
+ Next, [WindowBinder - What Not to Do!](@next)
  */
 /*:
  */

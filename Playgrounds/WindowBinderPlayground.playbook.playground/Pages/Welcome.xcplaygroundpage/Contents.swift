@@ -4,7 +4,7 @@
  > Be sure to have the `SwiftUIWindowBinder` schema selected to run any playground here
  > You may choose between the various platform in the Playground Inspector to demonstrate usage across each
 
- All the playground here should work with iOS 14, macOS 11, and tvOS 14.
+ All the playground here should work with iOS 14, macOS 11 (Big Sur), and tvOS 14.
  */
 /*:
  ## Playgrounds to Explore
@@ -12,8 +12,8 @@
 
  1. [Understanding WindowBinder](UnderstandingWindowBinder)
  2. [Using WindowButton](UsingWindowButton)
- 2. [What Not to Do With View using WindowBinder](GotchasOfWindowBinder)
- 3. [Wrapping Up](Wrapping Up)
+ 2. [WindowBinder - What Not to Do!](GotchasOfWindowBinder)
+ 3. [Wrapping Up](WrappingUp)
  */
 /*:
  ## A Taster
