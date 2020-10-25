@@ -1,6 +1,6 @@
 # SwiftUIWindowBinder
 
-![Swift Version](https://img.shields.io/badge/swift-5.2-blue.svg?style=for-the-badge)
+![Swift Version](https://img.shields.io/badge/swift-5.3-blue.svg?style=for-the-badge)
 ![iOS Version](https://img.shields.io/badge/iOS-13.0-green.svg?style=for-the-badge)
 ![macOS Version](https://img.shields.io/badge/macOS-10.15-green.svg?style=for-the-badge)
 ![tvOS Version](https://img.shields.io/badge/tvOS-13-green.svg?style=for-the-badge)
