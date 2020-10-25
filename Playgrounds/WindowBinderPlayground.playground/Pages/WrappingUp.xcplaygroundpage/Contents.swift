@@ -24,7 +24,7 @@
  import SwiftUIWindowBinder
 
  @available(tvOS, unavailable)
- struct WindowBindableOnTap: ViewModifier {
+ struct WindowBinderOnTap: ViewModifier {
     @State var window: Window?
 
     var count: Int
@@ -47,7 +47,7 @@
  extension View {
     /// Adds an action to perform when this view recognizes a tap gesture.
     public func onTapGesture(count: Int = 1, perform action: @escaping (Window) -> Void) -> some View {
-        return self.modifier(WindowBindableOnTap(count: count, action: action))
+        return self.modifier(WindowBinderOnTap(count: count, action: action))
     }
  }
 /*:
