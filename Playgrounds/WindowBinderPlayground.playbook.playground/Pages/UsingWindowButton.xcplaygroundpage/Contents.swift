@@ -2,8 +2,8 @@
  [Welcome](Welcome) | [Previous Page](@previous)
  # Using WindowButton
 
- Buttons are probably where window related actions may be used most. For convience `WindowButton`
- wraps the logic of `WindowBinder` and provides the `action:` closure to with a platform depedendent
+ Buttons are probably where window related actions may be used most. For convenience `WindowButton`
+ wraps the logic of `WindowBinder` and provides the `action:` closure to with a platform dependent
  `Window` when interacted with.
  */
 import SwiftUI

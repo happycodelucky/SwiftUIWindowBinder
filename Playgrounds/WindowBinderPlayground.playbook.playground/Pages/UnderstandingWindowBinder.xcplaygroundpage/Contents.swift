@@ -3,7 +3,7 @@
  # Understanding WindowBinder
 
  `WindowBinder` is at the core of capturing a `Window` in your SwiftUI `View`. As it name implies it uses a
- `Bindable` parameter to bind a `Window` to a `@State` property of the view (`Window` is a platform abstraction
+ `Binding` parameter to bind a `Window` to a `@State` property of the view (`Window` is a platform abstraction
  type alias for `UIWindow` or `NSWindow`).
 
  A WindowBinder is a view injected into the *actual* view hierarchy in UIKit or AppKit, able to tap into the
@@ -24,7 +24,7 @@ import SwiftUIWindowBinder
 
  `WindowBinder` initialization takes two arguments, `window:` and `content:`
 
- - `window:` is of `Bindable<Window>`, which should be your `@State` property to bind to, and set a `Window` when available.
+ - `window:` is of `Binding<Window>`, which should be your `@State` property to bind to, and set a `Window` when available.
  - `content:` is a closure where nested Views can be placed.
 
  The `content:` is only a convenience as it does not matter where in your view you place `WindowBinder,

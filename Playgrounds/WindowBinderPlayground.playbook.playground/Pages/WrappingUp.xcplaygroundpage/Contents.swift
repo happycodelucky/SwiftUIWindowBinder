@@ -11,7 +11,7 @@
  that.
 
  I had a few objections to including them:
- 1. Lots of boilerplate code, and maintence here when SwiftUI changes
+ 1. Lots of boilerplate code, and maintenance here when SwiftUI changes
  2. Overloading futureproofing (if Apple decides to overload `onTapGesture`'s `action:` to receive something else)
  3. Most important - providing a `Window` to buttons or event oriented view modifiers isn't actual "The Right Way" (see next section)
  */
@@ -63,10 +63,11 @@
  */
 /*:
  # Enjoy!
- SwiftUI is evolving, getting a ton of new features each release. This package represents a bit of a polyfill assistance
- (hello JavaScript + Bable nomenclature) until the time when we have official wrappers for the things we want.
+ SwiftUI is evolving, getting a ton of new features each release. This package represents a bit of a
+ [polyfill](https://en.wikipedia.org/wiki/Polyfill_(programming)) assistance (hello JavaScript + Babel nomenclature) until
+ the time when we have official wrappers for the things we want.
 
- I don't see UIKit or AppKit disappearing from beneath SiwftUI anytime soon (likely never), and a few of us will continue
+ I don't see UIKit or AppKit disappearing from beneath SwiftUI anytime soon (likely never), and a few of us will continue
  to find a need for such things like this package.
 
  Of course, bugs, issues, pull requests, corrections, or comments fire away
