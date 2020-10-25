@@ -14,7 +14,9 @@
  1. Lots of boilerplate code, and maintence here when SwiftUI changes
  2. Overloading futureproofing (if Apple decides to overload `onTapGesture`'s `action:` to receive something else)
  3. Most important - providing a `Window` to buttons or event oriented view modifiers isn't actual "The Right Way" (see next section)
-
+ */
+/*:
+ ### Custom ViewModifiers
  But, if you really must, here's the code for overloading the `onTapGesture` (now optionally receives a `Window`).
  Repeat for all modifiers you want to support.
  */

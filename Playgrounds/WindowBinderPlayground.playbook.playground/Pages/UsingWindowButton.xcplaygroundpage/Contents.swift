@@ -1,5 +1,5 @@
 /*:
- [Previous Page](@previous)
+ [Welcome](Welcome) | [Previous Page](@previous)
  # Using WindowButton
 
  Buttons are probably where window related actions may be used most. For convience `WindowButton`
@@ -39,7 +39,7 @@ func presentWindowAlert(withWindow window: Window) {
     let alert = NSAlert()
     alert.messageText = title
     // AppKit has a localizedName for the screen, for extra flair
-    alert.informativeText = "\(message) on screen '\(window.screen.localizedName ?? "Unknown screen")'"
+alert.informativeText = "\(message) on screen '\(window.screen?.localizedName ?? "Unknown screen")'"
     alert.addButton(withTitle: buttonTitle)
 
     alert.beginSheetModal(for: window)
@@ -64,6 +64,7 @@ struct ContentView: View {
                 .padding()
 
 /*:
+ ### Adding WindowButton
  Initialize a `WindowButton` that calls our `presentWindowAlert(withWindow:)` function.
 
  > If for some reason there is not `Window` (it's `nil`) the `action` clouser will not be called.
@@ -82,7 +83,7 @@ struct ContentView: View {
 /*:
  Go ahead, **run** the playground now on iOS or macOS. Tap the button to see the platform alert.
  */
-        }).padding()
+        }).padding(50)
     }
 
     /// For cross-platform consistency with SwiftUI, create a simple `ButtonStyle` to use with
@@ -100,7 +101,7 @@ struct ContentView: View {
 }
 
 /*:
- Next, [Using `WindowButton`](@next)
+ Next, [What Not to Do With View using WindowBinder](@next)
  */
 /*:
  */

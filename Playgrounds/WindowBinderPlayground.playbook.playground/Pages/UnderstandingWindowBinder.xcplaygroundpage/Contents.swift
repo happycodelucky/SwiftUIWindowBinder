@@ -1,5 +1,5 @@
 /*:
- [Previous Page](@previous)
+ [Welcome](Welcome) | [Previous Page](@previous)
  # Understanding WindowBinder
 
  `WindowBinder` is at the core of capturing a `Window` in your SwiftUI `View`. As it name implies it uses a
@@ -46,6 +46,7 @@ struct ContentView : View {
  > We'll talk more about this in [What Not to Do with Window]() to avoid a potential pitfall.
  */
 /*:
+ ### Using the Window
  Lets create a `Text` view with an `onTapGesture` modifier on it. When the text is tapped, the bound window description will
  be printed to the console (you can do this with other event based modifiers too, like `onDrop`, ...)
 
@@ -66,7 +67,7 @@ struct ContentView : View {
 /*:
  Go ahead, **run** the playground now. Tap the label to see the window description printed to the console.
  */
-        }
+        }.padding(50)
     }
 }
 
