@@ -130,7 +130,7 @@ struct ContentView : View {
             Text("Hello")
         }
         // Just like Button, WindowButton can be styled just the same
-        .buttonStyle(.default)
+        .buttonStyle(DefaultButtonStyle())
       
     }
 }
