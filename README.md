@@ -7,9 +7,7 @@
 ![watchOS Version](https://img.shields.io/badge/watchOS-UNSUPPORTED-red.svg?style=for-the-badge)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge)](.//LICENSE)
 [![Maintained](https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=for-the-badge)](https://github.com/happycodelucky/SwiftUIWindowBinder/graphs/commit-activity)
-![Release](https://img.shields.io/github/v/release/happycodelucky/SwiftUIWindowBinder.svg?include_prereleases&style=for-the-badge)
-
-
+![Release](https://img.shields.io/github/v/release/happycodelucky/SwiftUIWindowBinder.svg?style=for-the-badge)
 
 # Overview
 
