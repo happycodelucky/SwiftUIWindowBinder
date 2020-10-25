@@ -44,7 +44,7 @@ In good conscience I can't have no code on a README, so look out below.
 
 ## Playgrounds
 
-To run the [Playground](Playgrounds/WindowBinderPlayground.playground) examples you will need to open the package in Xcode and run any of the playgrounds under `Playgrounds`. 
+To run the [SwiftIWindowBinder Playground](https://github.com/happycodelucky/SwiftUIWindowBindableView/tree/main/Playgrounds/WindowBinderPlayground.playground) examples you will need to open the package in Xcode and run any of the playgrounds under `Playgrounds`. 
 
 Be sure to have the options '**Render Documentation**' and '**Build Active Schema**' enabled (they are by default) for the best representation, as the Playgrounds serve as working documentation.
 
@@ -56,7 +56,7 @@ There are only two real examples of demonstrate here. Using something called `Wi
 
 ### WindowBinder
 
-[`WindowBinder`](Source/SwiftUIWindowBinder/WindowBinder.swift) is at the core of capturing a `Window` in your SwiftUI `View`. As it name implies it uses a [`Binding`](https://developer.apple.com/documentation/swiftui/binding) parameter to bind a `Window` to a `@State` property of the view (`Window` is a platform abstraction type alias for `UIWindow` or `NSWindow`).
+[`WindowBinder`](Sources/SwiftUIWindowBinder/WindowBinder.swift) is at the core of capturing a `Window` in your SwiftUI `View`. As it name implies it uses a [`Binding`](https://developer.apple.com/documentation/swiftui/binding) parameter to bind a `Window` to a `@State` property of the view (`Window` is a platform abstraction type alias for `UIWindow` or `NSWindow`).
 
 > A `WindowBinder` is a view injected into the *actual* view hierarchy in UIKit or AppKit, able to tap into the hosted `UIWindow` or `NSWindow` respectively.
 
@@ -113,7 +113,7 @@ struct ContentView : View {
 
 ### WindowButton
 
-Buttons are probably where window related actions may be used most. For convenience [`WindowButton`](Source/SwiftUIWindowBinder/WindowButton.swift) wraps the logic of `WindowBinder` and provides the `action:` closure to with a platform dependent `Window` when interacted with.
+Buttons are probably where window related actions may be used most. For convenience [`WindowButton`](Sources/SwiftUIWindowBinder/WindowButton.swift) wraps the logic of `WindowBinder` and provides the `action:` closure to with a platform dependent `Window` when interacted with.
 
 Modifying the example above we get a much simpler looking ContentView:
 ```swift
@@ -142,7 +142,7 @@ Unlike the `WindowBinder` example there is no guard for `window`. This is becaus
 
 ## Wait, There WindowButton But No Event View Modifiers?
 
-Correct! For good reasons. Checkout the [Wrapping Up](Playgrounds/WindowBinderPlayground.playground/WrappingUp.xcplaygroundpage/Contents.swift) for those reasons and if you really, really want it, a code example.
+Correct! For good reasons. Checkout the [Wrapping Up](Playgrounds/WindowBinderPlayground.playground/Pages/WrappingUp.xcplaygroundpage/Contents.swift) for those reasons and if you really, really want it, a code example.
 
  # Enjoy!
 
